@@ -455,12 +455,58 @@ public class SuperHeroSightingsController {
     @RequestMapping(value = "/createOrg", method = RequestMethod.POST)
     public String createOrg(HttpServletRequest request, Model model) {
         List<HeroVillain> hvs = dao.getAllHeroesVillains();
+        List<Location> locList = dao.getAllLocations();
+        
+        if ((request.getParameter("name") == null)
+                || (request.getParameter("description") == null)
+                || (request.getParameter("phone") == null)
+                || (request.getParameter("email") == null)
+                || (request.getParameter("location") == null)
+                || (request.getParameter("location").equals(""))) {
+            
+            return "redirect:/displayCreateOrg";
+        }
         
         String name = request.getParameter("name");
         String descript = request.getParameter("description");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         int loc = Integer.parseInt(request.getParameter("location"));
+        
+        if (name.equals("")
+                || descript.equals("")
+                || phone.equals("")
+                || email.equals("")) {
+            
+            if (name.equals("")) {
+                model.addAttribute("name", "error");
+            } else {
+                model.addAttribute("name", name);
+            }
+            
+            if (descript.equals("")) {
+                model.addAttribute("descript", "error");
+            } else {
+                model.addAttribute("descript", descript);
+            }
+            
+            if (phone.equals("")) {
+                model.addAttribute("phone", "error");
+            } else {
+                model.addAttribute("phone", phone);
+            }
+            
+            if (email.equals("")) {
+                model.addAttribute("email", "error");
+            } else {
+                model.addAttribute("email", email);
+            }
+            
+            model.addAttribute("hvLists", hvs);
+            model.addAttribute("locList", locList);
+            
+            return "createOrg";
+        }
         
 //        for (int i = 1; i <= powers.size(); i++) {
 //                if (request.getParameter("power" + i) != null) {
@@ -484,6 +530,8 @@ public class SuperHeroSightingsController {
         newOrg.setEmail(email);
         newOrg.setLocation(selectedLoc);
         newOrg.setMetaHumans(hvsForOrg);
+        
+        dao.addOrganization(newOrg);
         
         return "redirect:/displayOrganizationsPage";
     }

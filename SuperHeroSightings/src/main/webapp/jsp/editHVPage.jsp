@@ -96,7 +96,7 @@
                     </c:forEach>
                 </div>
                 <div class="form-group">
-                    <div id="createHVButton" class="col-md-offset-6 col-md-6" style="margin-left: 315px;">
+                    <div id="createHVButton" class="col-md-offset-6 col-md-6" style="margin-left: 260px;">
                         <input type="submit" class="btn" value="Edit HeroVillain" />
                         <a href="${pageContext.request.contextPath}/displayHeroesVillainsPage" style="color: black;">
                             <button type="button" class="btn">Back</button>

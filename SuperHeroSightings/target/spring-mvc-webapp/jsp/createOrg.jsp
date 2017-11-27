@@ -70,16 +70,16 @@
                     Create New Organization</h2>
                 </div>
                 <hr>
-                <form class="form-horizontal" role="form" method="POST" action="createHeroVillain">
+                <form class="form-horizontal" role="form" method="POST" action="createOrg">
                     <div class="form-group styleFontThree">
                         <label for="name" class="col-md-3 control-label">Name: </label>
                         <div class="col-md-9">
                             <c:choose>
-                                <c:when test="${hvName == 'error'}">
+                                <c:when test="${name == 'error'}">
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Don't leave this blank!"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="HeroVillain Name" value="${hvName}"/>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="HeroVillain Name" value="${name}"/>
                                 </c:otherwise>
                             </c:choose>                           
                         </div>
@@ -88,11 +88,11 @@
                         <label for="description" class="col-md-3 control-label">Description: </label>
                         <div class="col-md-9">
                             <c:choose>
-                                <c:when test="${hvDescription == 'error'}">
+                                <c:when test="${descript == 'error'}">
                                     <textarea id="description" name="description" class="form-control" placeholder="Don't leave this blank!"></textarea>
                                 </c:when>
                                 <c:otherwise>
-                                    <textarea id="description" name="description" class="form-control" placeholder="Description of HeroVillain">${hvDescription}</textarea>
+                                    <textarea id="description" name="description" class="form-control" placeholder="Description of HeroVillain">${descript}</textarea>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -100,12 +100,28 @@
                     <div class="form-group styleFontThree">
                         <label for="phone" class="col-md-3 control-label">Phone: </label>
                         <div class="col-md-9">
-                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number"/>
+                            <c:choose>
+                                <c:when test="${phone == 'error'}">
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Don't leave this blank!"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" value="${phone}"/>
+                                </c:otherwise>
+                            </c:choose>
+                            <!--<input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number"/>-->
                         </div>
                     </div>
                     <div class="form-group styleFontThree">
                         <label for="email" class="col-md-3 control-label">Email: </label>
                         <div class="col-md-9">
+                            <c:choose>
+                            <c:when test="${email == 'error'}">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Don't leave this blank!"/>
+                            </c:when>
+                            <c:otherwise>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="${email}"/>;
+                            </c:otherwise>
+                            </c:choose>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email"/>
                         </div>
                     </div>
@@ -113,6 +129,7 @@
                         <label for="location-select" class="col-md-3 control-label">Location: </label>
                         <div class="col-md-9">
                             <select id="location-select" name="location" class="form-control">
+                                <!-- WORK ON THIS AFTER YOU GET BACK -->
                                 <c:forEach var="currentLoc" items="${locList}">
                                     <option value="${currentLoc.id}">${currentLoc.locationName}</option>
                                 </c:forEach>
