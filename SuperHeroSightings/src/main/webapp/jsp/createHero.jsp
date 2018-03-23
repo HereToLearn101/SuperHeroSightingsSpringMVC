@@ -179,7 +179,7 @@
                                             <img src="${pageContext.request.contextPath}/img/icons8-Plus-26.png">                           
                                         </button>
                                         <button id="remove-power${currentPower.id}" class="addEditDeleteButton" onclick="removePowerFromHero(${currentPower.id})" style="display: none;">
-                                            <img src="${pageContext.request.contextPath}/img/icons8-Plus-26.png">
+                                            <img src="${pageContext.request.contextPath}/img/icons8-Minus-26.png">
                                         </button>
                                     </c:if>
                                 </div>
